@@ -64,7 +64,11 @@ class snake(object):
                 if i == len(self.body)-1:
                     self.turns.pop(p)
             else:
-                if c.drinx ==-1 and c.pos[0] <= 0: 
+                if c.drinx ==-1 and c.pos[0] <= 0: c.pos =(c.rows-1, c.pos[1])
+                elif c.drinx == 1 and c.pos[0] >= c.rows-1: c.pos =(0,c.pos[1])
+                elif c.drinx == 1 and c.pos[1] >= c.rows-1: c.pos =(c.pos[0],0)
+                elif c.drinx ==-1 and c.pos[1] <= 0: c.pos =(c.pos[0], c.rows-1)
+                else: c.move(c.drinx, c.driny)
 
     def reset(self):
         pass
