@@ -15,6 +15,9 @@ class cube(object):
     def move(self, drinx,driny):
         pass
 
+    def draw(self, surface, eyes=False):
+        pass
+
 class snake(object):
     #snake
     body=[]
@@ -64,10 +67,10 @@ class snake(object):
                 if i == len(self.body)-1:
                     self.turns.pop(p)
             else:
-                if c.drinx ==-1 and c.pos[0] <= 0: c.pos =(c.rows-1, c.pos[1])
-                elif c.drinx == 1 and c.pos[0] >= c.rows-1: c.pos =(0,c.pos[1])
-                elif c.drinx == 1 and c.pos[1] >= c.rows-1: c.pos =(c.pos[0],0)
-                elif c.drinx ==-1 and c.pos[1] <= 0: c.pos =(c.pos[0], c.rows-1)
+                if c.drinx ==-1 and c.pos[0] <= 0: c.pos = (c.rows-1, c.pos[1])
+                elif c.drinx == 1 and c.pos[0] >= c.rows-1: c.pos =(0,c.pos[1]) #move right and at edge
+                elif c.drinx == 1 and c.pos[1] >= c.rows-1: c.pos =(c.pos[0],0) #going dwn
+                elif c.drinx ==-1 and c.pos[1] <= 0: c.pos = (c.pos[0], c.rows-1) #move up
                 else: c.move(c.drinx, c.driny)
 
     def reset(self):
@@ -77,7 +80,12 @@ class snake(object):
         pass
 
     def draw(self, surface):
-        pass
+        for i, c in enumerate(self.body):
+            if i == 0:
+                c.draw(surface, True)
+            else:
+                c.draw(surface)
+
 
 def drawGrid(w, rows, surface):
     sizeBtwn = w // rows
@@ -94,7 +102,7 @@ def drawGrid(w, rows, surface):
 
 def redrawWindow(surface):
     global rows, width
-    surface.fill(0,0,0,0)
+    surface.fill((0,0,0))
     drawGrid(width, rows, surface )
     pygame.display.update() #update the screen
 
@@ -112,7 +120,7 @@ def main():
     s= snake((255,0,0), (10,10))
 
     flag = True
-    clock = pygame.time.Clock
+    clock = pygame.time.Clock()
 
     while flag:
         pygame.time.delay(50)
