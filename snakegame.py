@@ -95,7 +95,11 @@ class snake(object):
         pass
 
     def addCube(self):
-        pass
+        tail = self.body[-1]
+        dx, dy = tail.dirnx, tail.dirny
+
+        if dx == 1 and dy == 0:
+            self.body.append(cube((tail.pos[0]-1, tail.pos[1])))
 
     def draw(self, surface):
         for i, c in enumerate(self.body):
@@ -126,7 +130,7 @@ def redrawWindow(surface):
     pygame.display.update() #update the screen
 
 def randomSnack(rows, item):
-    global rows
+    #global rows
     positions =item.body
 
     while True:
