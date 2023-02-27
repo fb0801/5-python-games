@@ -6,4 +6,5 @@ Resources:
 <li> https://www.fesliyanstudios.com/ </li>
 <li> https://www.youtube.com/watch?v=CD4qAhfFuLo </li>
 <li>https://www.youtube.com/watch?v=3Yhhzflmxfs</li>
+<li> https://nerdparadise.com/programming/pygame/part3</li>
 <ul>
