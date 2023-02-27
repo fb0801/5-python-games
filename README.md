@@ -7,4 +7,5 @@ Resources:
 <li> https://www.youtube.com/watch?v=CD4qAhfFuLo </li>
 <li>https://www.youtube.com/watch?v=3Yhhzflmxfs</li>
 <li> https://nerdparadise.com/programming/pygame/part3</li>
+  <li> https://stackoverflow.com/questions/22227684/pygame-error-mixer-system-not-initialized</li>
 <ul>
