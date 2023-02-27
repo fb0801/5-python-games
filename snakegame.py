@@ -62,6 +62,8 @@ class snake(object):
                     self.dirnx = -1
                     self.dirny = 0
                     self.turns[self.head.pos[:]] = [self.dirnx, self.dirny]
+                    pygame.mixer.music.load('Moving-Around.mp3')
+                    pygame.mixer.music.play()
 
                 elif keys[pygame.K_RIGHT]:
                     self.dirnx = 1
@@ -101,14 +103,18 @@ class snake(object):
         self.dirny = 1
 
     def addCube(self):
+        mixer.init()
+        snakeGrow = pygame.mixer.music.load("sounds/positive.mp3")
         tail = self.body[-1]
         dx, dy = tail.dirnx, tail.dirny
 
         if dx == 1 and dy == 0:
             self.body.append(cube((tail.pos[0]-1, tail.pos[1])))
+            
         elif dx == -1 and dy == 0:
              self.body.append(cube((tail.pos[0]+1, tail.pos[1])))
-             playsound('sounds/positive.mp3')
+             #playsound('sounds/positive.mp3')
+             
         elif dx ==0 and dy ==1:
              self.body.append(cube((tail.pos[0], tail.pos[1]-1)))
         elif dx == 0 and dy ==-1:
