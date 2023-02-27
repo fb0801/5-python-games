@@ -7,6 +7,8 @@ from tkinter import messagebox
 from playsound import  playsound
 from pygame import mixer
 
+Total = []
+
 class cube(object):
     #cube
     rows= 20
@@ -51,19 +53,20 @@ class snake(object):
         self.dirny = 1
 
     def move(self):
+        pygame.mixer.init()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
 
             keys = pygame.key.get_pressed()
+            effect = pygame.mixer.music.load('sounds/Moving-Around.mp3')
 
             for key in keys:
                 if keys[pygame.K_LEFT]:
                     self.dirnx = -1
                     self.dirny = 0
                     self.turns[self.head.pos[:]] = [self.dirnx, self.dirny]
-                    pygame.mixer.music.load('Moving-Around.mp3')
-                    pygame.mixer.music.play()
+                    
 
                 elif keys[pygame.K_RIGHT]:
                     self.dirnx = 1
@@ -103,13 +106,16 @@ class snake(object):
         self.dirny = 1
 
     def addCube(self):
-        mixer.init()
+        pygame.mixer.init()
         snakeGrow = pygame.mixer.music.load("sounds/positive.mp3")
         tail = self.body[-1]
         dx, dy = tail.dirnx, tail.dirny
 
         if dx == 1 and dy == 0:
             self.body.append(cube((tail.pos[0]-1, tail.pos[1])))
+            effect = pygame.mixer.music.load('sounds/Moving-Around.mp3')
+            s = Total + 1
+            Total.append()
             
         elif dx == -1 and dy == 0:
              self.body.append(cube((tail.pos[0]+1, tail.pos[1])))
@@ -199,7 +205,7 @@ def main():
         for x in range(len(s.body)):
             if s.body[x].pos in list(map(lambda z:z.pos,s.body[x+1:])):
                 print('Score: ', len(s.body))
-                message_box('You Lost!', 'Play again...')
+                message_box('You Lost!', 'you scored: {Total} Play again...')
                 s.reset((10,10))
                 break
 
