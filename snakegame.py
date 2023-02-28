@@ -6,8 +6,10 @@ import random
 from tkinter import messagebox
 from playsound import  playsound
 from pygame import mixer
+import os
 
 Total = []
+pygame.mixer.init()
 
 class cube(object):
     #cube
@@ -59,7 +61,7 @@ class snake(object):
                 pygame.quit()
 
             keys = pygame.key.get_pressed()
-            effect = pygame.mixer.music.load('sounds/Moving-Around.mp3')
+            effect = pygame.mixer.Sound(os.path.join('sounds', 'Moving-Around.mp3'))
 
             for key in keys:
                 if keys[pygame.K_LEFT]:
@@ -106,7 +108,8 @@ class snake(object):
         self.dirny = 1
 
     def addCube(self):
-        pygame.mixer.init()
+        global Total
+        
         snakeGrow = pygame.mixer.music.load("sounds/positive.mp3")
         tail = self.body[-1]
         dx, dy = tail.dirnx, tail.dirny
@@ -114,8 +117,8 @@ class snake(object):
         if dx == 1 and dy == 0:
             self.body.append(cube((tail.pos[0]-1, tail.pos[1])))
             effect = pygame.mixer.music.load('sounds/Moving-Around.mp3')
-            s = Total + 1
-            Total.append()
+            Total+=1
+            
             
         elif dx == -1 and dy == 0:
              self.body.append(cube((tail.pos[0]+1, tail.pos[1])))
