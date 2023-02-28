@@ -1,4 +1,5 @@
 import turtle
+import os
 
 wn = turtle.Screen()
 wn.title("Pong")
@@ -6,6 +7,9 @@ wn.bgcolor("black")
 wn.setup(width=800, height=600)
 wn.tracer(0)
 
+#score
+score_a = 0
+score_b = 0
 
 # paddle a
 paddle_a = turtle.Turtle()
@@ -37,8 +41,19 @@ ball.shape("square")
 ball.color("white")
 ball.penup()
 ball.goto(0,0)
-ball.dx = 2
-ball.dy = -2
+ball.dx = 0.3
+ball.dy = -0.3
+
+
+#pen
+pen = turtle.Turtle()
+pen.speed(1)
+pen.color("white")
+pen.penup()
+pen.hideturtle()
+pen.goto(0,260)
+pen.write("Player A: 0  Player B: 0", align="center", font=("courier", 24,"normal"))
+
 
 
 def paddle_a_up():
@@ -83,10 +98,18 @@ while True:
     if ball.xcor() > 390:
         ball.goto(0,0)
         ball.dx *= -1
+        score_a+=1
+        pen.clear()
+        pen.write("Player A: {}  Player B: {}".format(score_a, score_b), align="center", font=("courier", 24,"normal"))
+
 
     if ball.xcor() < -390:
         ball.goto(0,0)
         ball.dx *= -1
+        score_b +=1
+        pen.clear() # clear what already on screen
+        pen.write("Player A: {}  Player B: {}".format(score_a, score_b), align="center", font=("courier", 24,"normal"))
+
 
 
 #paddle and ball coll
@@ -96,5 +119,5 @@ while True:
 
 
     if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < paddle_a.ycor() + 40 and ball.ycor() > paddle_a.ycor() - 40):
-        ball.serx(340)
+        ball.serx(-340)
         ball.dx *=-1
