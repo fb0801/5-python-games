@@ -10,4 +10,5 @@ Resources:
   <li> https://stackoverflow.com/questions/22227684/pygame-error-mixer-system-not-initialized</li>
   <li>https://www.pygame.org/docs/ref/music.html#pygame.mixer.music.play</li>
   <li>https://www.youtube.com/watch?v=C6jJg9Zan7w</li>
+  <li>https://www.youtube.com/watch?v=XGf2GcyHPhc</li>
 <ul>
