@@ -1,8 +1,12 @@
 import numpy as np
 import pygame
+import sys
 
 ROW_COUNT = 6
 COLUMN_COUNT = 7
+BLUE = (0,0,255)
+YELLOW = ()
+BLACK = (0,0,0,0)
 
 def makeBoardInput():
     pass
@@ -56,6 +60,12 @@ def winning_move(board, piece):
                 return True
 
 
+def draw_board(board):
+    for c in range(COLUMN_COUNT):
+        for r in range(ROW_COUNT):
+            pygame.draw.rect(screen,BLUE, (c*SQUARESIZE, r* SQUARESIZE+SQUARESIZE, SQUARESIZE, SQUARESIZE) )
+            pygame.draw.circle(screen, BLACK, (int(c* SQUARESIZE+SQUARESIZE/2,) int(r*SQUARESIZE+SQUARESIZE+SQUARESIZE/2)),RADIUS)
+
 board = create_board()
 game_over = False
 turn = 0
@@ -67,18 +77,31 @@ SQUARESIZE = 100
 width = COLUMN_COUNT * SQUARESIZE
 height = (ROW_COUNT + 1) * SQUARESIZE
 
+size = (width, height)
+RADIUS = int(SQUARESIZE/2 - 5)
+screen = pygame.display.set_mode(size)
+draw_board(board)
+pygame.displayx.update()
+
 while not game_over:
     #take input
-    if turn == 0:
-        col = int(input("Make your selection (0-6): "))
 
-        if is_valid_location(board, col):
-            row = get_next_open_row(board, col)
-            drop_piece(board, row, col, 1)
 
-            if winning_move(board, 1):
-                print("PLAYER ONE wins!!!")
-                game_over = True
+    for event in pygame.event.get():
+        if event.type== pygame.QUIT():
+            sys.exit()
+
+        if event.type==pygame.MOUSEBUTTONDOWN:
+            if turn == 0:
+                col = int(input("Make your selection (0-6): "))
+
+                if is_valid_location(board, col):
+                    row = get_next_open_row(board, col)
+                    drop_piece(board, row, col, 1)
+
+                if winning_move(board, 1):
+                    print("PLAYER ONE wins!!!")
+                    game_over = True
 
     #p2 turn
     else:
