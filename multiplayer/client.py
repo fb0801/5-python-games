@@ -14,36 +14,49 @@ class Player():
         self.height = height
         self.color = color
         self.rect = (x,y,width,height)
+        self.vel = 3
 
     def draw(self,win):
         pygame.draw.rect(win, self.color,self.rect)
 
-    def move():
+    def move(self):
         #check what btn pressed
         keys  = pygame.keys.get_pressed()
         if keys[pygame.K_LEFT]:
+            self.x -= self.vel
 
         if keys[pygame.K_RIGHT]:
+            self.x += self.vel
 
         if keys[pygame.K_UP]:
+            self.y -= self.vel
 
         if keys[pygame.K_DOWN]:
+            self.y += self.vel
+
+        self.rect(self.x, self.y, self.width, self.height)
 
 
 
-
-def redrawWindow():
+def redrawWindow(player):
     win.fill(255,255,255)
+    player.draw()
     pygame.display.update()
 
 
 def main():
     run = True
+    p = Player(50,50,100,100,(0,255,0))
+    clock = pygame.time.clock()
     while run:
+        clock.tick(60)
         for event in pygame.event.get():
             if event.type== pygame.quit:
                 run=False
                 pygame.quit()
 
+        p.move()
+        redrawWindow(win, p)
 
-                redrawWindow()
+
+main()
