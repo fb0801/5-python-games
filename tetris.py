@@ -251,9 +251,14 @@ def draw_next_shape(shape, surface):
     surface.blit(label, (sx + 10, sy- 30))
  
 def update_score(score):
-    with open('source.txt', 'r',) as f:
+    with open('score.txt', 'r',) as f:
         lines = f.readline()
         score = lines[0].strip()
+
+    with open('score.tx', 'r') as f:
+        if int(score) > nscore:
+        else:
+            f.write(str(nscore))
     
  
 def draw_window(surface):
