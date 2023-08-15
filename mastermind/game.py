@@ -7,6 +7,7 @@ CODE_LENGTH = 5
 
 def generate_code():
     code = []
+    
     for _ in range(CODE_LENGTH):
         color = random.choice(COLORS)
         code.append(color)
@@ -26,8 +27,8 @@ def guess_code():
             if color not in COLORS:
                 print(f'INVALID color:{color}. TRY AGAIN!')
                 break
-            else:
-                break
+        else:
+            break
 
     return guess
 
@@ -38,12 +39,12 @@ def check_code(guess, real_code):
 
     for color in real_code:
         if color not in color_counts:
-            color_counts[color]=0
-        color_counts[color]+=1
+            color_counts[color] = 0
+        color_counts[color] += 1
 
     for guess_color, real_color in zip(guess, real_code):
         if guess_color == real_color:
-            correct_pos +=1
+            correct_pos += 1
             color_counts[guess_color] -= 1
 
     for guess_color, real_color in zip(guess, real_code):
@@ -59,7 +60,7 @@ def game():
     print('The valid colors are', *COLORS)
 
     code = generate_code()
-    for attempts in range(1, TRIES +1):
+    for attempts in range(1, TRIES + 1):
         guess = guess_code()
         correct_pos, incorrect_pos = check_code(guess, code)
         if correct_pos == CODE_LENGTH:
@@ -67,6 +68,7 @@ def game():
             break
         
         print(f'CORRECT posiions: {correct_pos} | INCORRECT posistions: {incorrect_pos}' )
+
     else:
         print('YOU ran out of tries, the code was:', *code)
 
