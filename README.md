@@ -3,6 +3,8 @@ Building games in Python using freecodecamp <a href="https://www.youtube.com/wat
 
 ## Issues: 
 
+- use this to install curses module -> pip install windows-curses
+
 ## Changes made:
 
 Resources:
@@ -16,6 +18,8 @@ Resources:
   <li>https://www.youtube.com/watch?v=C6jJg9Zan7w</li>
   <li>https://www.youtube.com/watch?v=XGf2GcyHPhc</li>
   <li>https://www.youtube.com/watch?v=sP-gFDreaQ4</li>
+  <li>https://pypi.org/project/windows-curses/</li>
+  <li>https://www.youtube.com/watch?v=NQ5i1kJAA6Y&pp=ygUYcHl0aG9uIGJlZ2lubmVyIHByb2plY3Rz</li>
   
 <ul>
 
